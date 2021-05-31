@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="androidx.databinding.ObservableArrayMap"/>
+
+        <variable
+            name="UserObservale"
+            type="com.app.jetp4.UserObservable" />
+
+        <variable
+            name="ViewModle"
+            type="com.app.jetp4.ViewModle" />
+
+        <variable
+            name="MapViewModle"
+            type="com.app.jetp4.MapViewModle" />
+        
+        <variable
+            name="people"
+            type="ObservableArrayMap&lt;String,String&gt;" />
+
+        <variable
+            name="Info"
+            type="com.app.jetp4.Info" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".LoginActivity">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".MainActivity"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@{UserObservale.username}"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@{UserObservale.password}"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{()-> ViewModle.changeObservableText()}"
+                android:text="改变user信息"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text='@{people["1"]}'/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text='@{people["2"]}'/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text='@{people["3"]}'/>
+
+            <Button
+                android:id="@+id/strbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{()-> MapViewModle.changeStr()}"
+                android:text="改变map信息"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text='@{Info.info}'/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={Info.info}"
+                android:afterTextChanged="@{MapViewModle.changeInfo}"
+                android:hint="请输入！"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{()-> MapViewModle.showStr(Info)}"
+                android:text="showInfo"/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
